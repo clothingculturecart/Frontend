@@ -1,0 +1,19 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="{{ routes.root_url }}" class="site-header__logo">{{ shop.name }}</a>
+
+    <button class="site-header__burger" data-menu-toggle aria-label="Menu">☰</button>
+
+    <nav class="site-header__nav" data-mobile-menu>
+      {% for link in linklists.main-menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="site-header__icons">
+      <a href="{{ routes.search_url }}" aria-label="Search">🔍</a>
+      <a href="{{ routes.account_url }}" aria-label="Account">👤</a>
+      <a href="{{ routes.cart_url }}" aria-label="Cart">🛒 <span data-cart-count>{{ cart.item_count }}</span></a>
+    </div>
+  </div>
+</header>

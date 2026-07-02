@@ -1,0 +1,22 @@
+<section class="hero">
+  <div class="hero__content">
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.subheading }}</p>
+    <a href="{{ section.settings.button_link }}" class="hero__cta">
+      {{ section.settings.button_text }}
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "TOO SMART FOR THIS WORLD" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Streetwear drops that hit different" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "Shop Now" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

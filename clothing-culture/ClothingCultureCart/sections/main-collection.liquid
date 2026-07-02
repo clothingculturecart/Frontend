@@ -1,0 +1,29 @@
+<section class="collection">
+  <h1>{{ collection.title }}</h1>
+
+  <div class="product-grid">
+    {% for product in collection.products %}
+      <a href="{{ product.url }}" class="product-card">
+        <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.title }}">
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.price | money }}</p>
+      </a>
+    {% endfor %}
+  </div>
+
+  {% if paginate.pages > 1 %}
+    <div class="pagination">
+      {% for part in paginate.parts %}
+        {% if part.is_link %}
+          <a href="{{ part.url }}">{{ part.title }}</a>
+        {% else %}
+          <span>{{ part.title }}</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{ "name": "Main Collection", "settings": [] }
+{% endschema %}

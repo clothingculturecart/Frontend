@@ -1,0 +1,40 @@
+<section class="product">
+  <div class="product__gallery" data-gallery>
+    <div class="product-gallery__main">
+      <img src="{{ product.featured_image | image_url: width: 1200 }}"
+           data-main-image alt="{{ product.title }}">
+    </div>
+    <div class="product-gallery__thumbs">
+      {% for image in product.images limit: 3 %}
+        <button type="button"
+                class="thumb{% if forloop.first %} is-active{% endif %}"
+                data-thumb
+                data-full="{{ image | image_url: width: 1200 }}">
+          <img src="{{ image | image_url: width: 300 }}" alt="">
+        </button>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="product__info">
+    <h1>{{ product.title }}</h1>
+    <p class="product__price">{{ product.price | money }}</p>
+    <div class="product__description">{{ product.description }}</div>
+
+    {% form 'product', product %}
+      <select name="id">
+        {% for variant in product.variants %}
+          <option value="{{ variant.id }}">{{ variant.title }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit">Add to Cart</button>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "settings": []
+}
+{% endschema %}
